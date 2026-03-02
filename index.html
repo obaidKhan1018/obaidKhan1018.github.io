@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Obaid Ullah Khan | AI Architect & Full Stack Engineer</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Fira+Code:wght@400;600&display=swap"
+        rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['Fira Code', 'monospace'],
+                    },
+                    colors: {
+                        dark: '#0f172a',
+                        card: '#1e293b',
+                        accent: '#38bdf8', // Sky blue
+                        secondary: '#94a3b8',
+                        success: '#22c55e'
+                    },
+                    screens: {
+                        '3xl': '1920px', // TV Support
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+
+        .glass-nav {
+            background: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .tech-badge {
+            @apply px-3 py-1 text-xs font-mono rounded-full bg-slate-800 text-accent border border-slate-700 whitespace-nowrap;
+        }
+
+        /* Admin Controls */
+        .admin-control {
+            display: none;
+        }
+
+        .admin-active .admin-control {
+            display: flex;
+        }
+
+        .delete-btn {
+            display: none;
+        }
+
+        .admin-active .delete-btn {
+            display: block;
+        }
+    </style>
+</head>
+
+<body class="bg-dark text-slate-300 antialiased selection:bg-accent selection:text-dark">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass-nav transition-all duration-300" id="navbar">
+        <div class="max-w-7xl 3xl:max-w-[90%] mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-white tracking-tighter hover:text-accent transition-colors">
+                OK<span class="text-accent">.</span>
+            </a>
+
+            <div class="hidden md:flex space-x-8 text-sm font-medium items-center">
+                <a href="#about" class="hover:text-accent transition-colors">About</a>
+                <a href="#experience" class="hover:text-accent transition-colors">Experience</a>
+                <a href="#flagship" class="hover:text-accent transition-colors">Flagship</a>
+                <a href="#ml-lab" class="hover:text-accent transition-colors">ML Lab</a>
+
+                <!-- Admin Toggle Indicator -->
+                <span id="admin-indicator"
+                    class="hidden px-2 py-1 bg-red-500/20 text-red-400 text-xs rounded border border-red-500/50">ADMIN
+                    MODE</span>
+
+                <a href="#contact"
+                    class="px-5 py-2 border border-accent text-accent rounded hover:bg-accent/10 transition-colors">Contact</a>
+            </div>
+
+            <!-- Mobile Menu Btn -->
+            <button class="md:hidden text-white text-xl" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-card border-b border-slate-700 p-4 space-y-4 shadow-2xl">
+            <a href="#about" class="block hover:text-accent">About</a>
+            <a href="#experience" class="block hover:text-accent">Experience</a>
+            <a href="#flagship" class="block hover:text-accent">Projects</a>
+            <a href="#contact" class="block text-accent">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="about" class="min-h-screen flex items-center justify-center pt-20 relative overflow-hidden">
+        <!-- Background Noise -->
+        <div
+            class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 pointer-events-none">
+        </div>
+        <div
+            class="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-dark via-dark/95 to-dark z-0 pointer-events-none">
+        </div>
+
+        <div class="max-w-7xl 3xl:max-w-[80%] mx-auto px-6 relative z-10 grid md:grid-cols-2 gap-12 items-center">
+            <div class="animate-fade-up">
+                <p class="text-accent font-mono mb-4">AI Architect & Full Stack Engineer</p>
+                <h1 class="text-5xl md:text-7xl 3xl:text-8xl font-bold text-white mb-6 leading-tight">
+                    Obaid Ullah <span class="text-slate-500">Khan.</span>
+                </h1>
+                <h2 class="text-2xl md:text-3xl text-secondary font-semibold mb-6">
+                    Building Intelligent Systems for the Enterprise.
+                </h2>
+                <p class="text-lg max-w-xl mb-8 leading-relaxed text-slate-400">
+                    Specializing in <span class="text-accent">Hybrid RAG Architectures</span>, <span
+                        class="text-accent">Complex ERP Logic</span>, and <span class="text-accent">High-Throughput Data
+                        Pipelines</span>. Currently architecting legal AI and solar analytics platforms.
+                </p>
+
+                <!-- CV Actions -->
+                <div class="flex flex-wrap gap-4 mb-8">
+                    <a href="cv.pdf" download
+                        class="px-6 py-3 bg-accent text-dark font-bold rounded hover:bg-sky-400 transition-all flex items-center gap-2">
+                        <i class="fas fa-download"></i> Download CV
+                    </a>
+                    <a href="cv.pdf" target="_blank"
+                        class="px-6 py-3 border border-slate-600 rounded hover:border-accent hover:text-accent transition-all flex items-center gap-2">
+                        <i class="fas fa-eye"></i> View CV
+                    </a>
+                </div>
+
+                <!-- Social Links -->
+                <div class="flex gap-6 text-2xl text-slate-400">
+                    <a href="https://github.com/obaidKhan1018" target="_blank"
+                        class="hover:text-white transition-colors" title="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/obaidullahkhan-ai" target="_blank"
+                        class="hover:text-blue-500 transition-colors" title="LinkedIn"><i
+                            class="fab fa-linkedin"></i></a>
+                    <a href="https://www.upwork.com/freelancers/~0172e560de8a923450?mp_source=share" target="_blank"
+                        class="hover:text-green-500 transition-colors" title="Upwork"><i
+                            class="fas fa-circle-nodes"></i></a>
+                    <!-- Using generic icon for Upwork if FA doesn't have it -->
+                </div>
+            </div>
+
+            <!-- Code Block Visual -->
+            <div class="hidden md:block 3xl:scale-125 origin-left">
+                <div
+                    class="bg-card rounded-lg border border-slate-700 shadow-2xl p-4 font-mono text-sm overflow-hidden relative group">
+                    <div class="flex gap-2 mb-4 border-b border-slate-700 pb-2">
+                        <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                    </div>
+                    <div class="text-slate-400 leading-relaxed">
+                        <span class="text-purple-400">class</span> <span
+                            class="text-yellow-300">PineconeHybridSearch</span>:<br>
+                        &nbsp;&nbsp;<span class="text-purple-400">def</span> <span
+                            class="text-blue-400">execute</span>(<span class="text-orange-300">self</span>, query):<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-gray-500"># 1. Dense Vector (OpenAI)</span><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;dense = <span
+                            class="text-orange-300">self</span>.embedder.encode(query)<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-gray-500"># 2. Sparse Vector (BM25)</span><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;sparse = <span
+                            class="text-orange-300">self</span>.bm25.encode(query)<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-gray-500"># 3. Local Reranking (FlashRank)</span><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;matches = <span class="text-orange-300">self</span>.index.query(dense,
+                        sparse)<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-purple-400">return</span> <span
+                            class="text-orange-300">self</span>.reranker.rank(matches)<br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Timeline -->
+    <section id="experience" class="py-24 bg-dark">
+        <div class="max-w-4xl mx-auto px-6">
+            <h2 class="text-3xl font-bold text-white mb-12 flex items-center">
+                <span class="text-accent text-xl mr-2">01.</span> Professional Journey
+                <span class="ml-4 h-px bg-slate-700 flex-grow max-w-xs"></span>
+                <button onclick="openModal('Experience')"
+                    class="admin-control ml-4 text-xs bg-green-600 text-white px-2 py-1 rounded hover:bg-green-500"><i
+                        class="fas fa-plus"></i> Add</button>
+            </h2>
+
+            <div class="relative border-l border-slate-700 ml-3 space-y-12" id="experience-container">
+                <!-- Javascript will render this -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Flagship Projects -->
+    <section id="flagship" class="py-24">
+        <div class="max-w-6xl 3xl:max-w-[80%] mx-auto px-6">
+            <h2 class="text-3xl font-bold text-white mb-12 flex items-center">
+                <span class="text-accent text-xl mr-2">02.</span> Enterprise Architecture
+                <span class="ml-4 h-px bg-slate-700 flex-grow max-w-xs"></span>
+                <button onclick="openModal('Flagship')"
+                    class="admin-control ml-4 text-xs bg-green-600 text-white px-2 py-1 rounded hover:bg-green-500"><i
+                        class="fas fa-plus"></i> Add</button>
+            </h2>
+
+            <div id="flagship-container">
+                <!-- JS will render projects here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ML Lab -->
+    <section id="ml-lab" class="py-24 bg-card/30">
+        <div class="max-w-6xl 3xl:max-w-[80%] mx-auto px-6">
+            <h2 class="text-3xl font-bold text-white mb-12 flex items-center">
+                <span class="text-accent text-xl mr-2">03.</span> ML Research & Labs
+                <span class="ml-4 h-px bg-slate-700 flex-grow max-w-xs"></span>
+                <button onclick="openModal('ML Lab')"
+                    class="admin-control ml-4 text-xs bg-green-600 text-white px-2 py-1 rounded hover:bg-green-500"><i
+                        class="fas fa-plus"></i> Add</button>
+            </h2>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" id="ml-lab-container">
+                <!-- JS will render ML projects here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Admin Modal -->
+    <div id="admin-modal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/80 backdrop-blur-sm">
+        <div class="bg-card w-full max-w-lg p-8 rounded-lg border border-slate-700 shadow-2xl relative">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white"><i
+                    class="fas fa-times text-xl"></i></button>
+
+            <h3 class="text-2xl font-bold text-white mb-6">Add New Project</h3>
+            <p class="text-sm text-yellow-500 mb-4 font-mono"><i class="fas fa-exclamation-triangle"></i> This updates
+                the UI only. Connect to Django Backend to persist.</p>
+
+            <form id="add-project-form" class="space-y-4">
+                <div>
+                    <label class="block text-sm text-slate-400 mb-1">Project Title</label>
+                    <input type="text" id="p-title"
+                        class="w-full bg-dark border border-slate-700 rounded p-2 text-white focus:border-accent outline-none">
+                </div>
+                <div>
+                    <label class="block text-sm text-slate-400 mb-1">Description</label>
+                    <textarea id="p-desc" rows="3"
+                        class="w-full bg-dark border border-slate-700 rounded p-2 text-white focus:border-accent outline-none"></textarea>
+                </div>
+                <div>
+                    <label class="block text-sm text-slate-400 mb-1">Tech Stack (comma separated)</label>
+                    <input type="text" id="p-tech"
+                        class="w-full bg-dark border border-slate-700 rounded p-2 text-white focus:border-accent outline-none">
+                </div>
+
+                <input type="hidden" id="p-category">
+
+                <button type="submit"
+                    class="w-full bg-accent text-dark font-bold py-3 rounded hover:bg-sky-400 transition-colors">
+                    Add to Portfolio
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Contact & Footer -->
+    <section id="contact" class="py-24 text-center">
+        <div class="max-w-2xl mx-auto px-6">
+            <p class="text-accent font-mono mb-4">What's Next?</p>
+            <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">Get In Touch</h2>
+            <div class="flex flex-col md:flex-row gap-4 justify-center items-center">
+                <a href="mailto:obaidullahkhan@example.com"
+                    class="px-8 py-4 bg-transparent border border-accent text-accent rounded hover:bg-accent/10 transition-colors">
+                    Say Hello
+                </a>
+                <a href="https://www.upwork.com/freelancers/~0172e560de8a923450?mp_source=share" target="_blank"
+                    class="px-8 py-4 bg-green-600 text-white rounded hover:bg-green-500 transition-colors">
+                    Hire on Upwork
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-6 border-t border-slate-800 bg-dark text-center text-slate-500 text-sm font-mono relative">
+        <div class="flex justify-center space-x-6 mb-4">
+            <a href="https://github.com/obaidKhan1018" target="_blank" class="hover:text-accent"><i
+                    class="fab fa-github text-xl"></i></a>
+            <a href="https://www.linkedin.com/in/obaidullahkhan-ai" target="_blank" class="hover:text-accent"><i
+                    class="fab fa-linkedin text-xl"></i></a>
+        </div>
+        <p>Built by Obaid Ullah Khan.</p>
+
+        <!-- Secret Admin Login -->
+        <button onclick="toggleAdmin()"
+            class="absolute bottom-6 right-6 text-slate-700 hover:text-red-500 transition-colors">
+            <i class="fas fa-lock"></i>
+        </button>
+    </footer>
+
+    <!-- LOGIC SCRIPT -->
+    <script>
+        // --- 1. DATA SOURCE (Simulating Database) ---
+        const data = {
+            experience: [
+                {
+                    role: "AI Engineer",
+                    company: "Data Function Inc.",
+                    period: "Aug 2025 - Present",
+                    points: [
+                        "Architecting <strong>CasePolaris</strong>, a RAG-based legal AI assistant using LangChain, Pinecone, and FlashRank.",
+                        "Developing <strong>StoneCloud</strong>, an ERP with inverse accounting logic and SQL stored procedures.",
+                        "Building <strong>ForceV</strong>, a high-throughput solar analytics dashboard."
+                    ]
+                },
+                {
+                    role: "Machine Learning Engineer",
+                    company: "UNAZ Services Ltd.",
+                    period: "Sep 2024 - Jul 2025",
+                    points: [
+                        "Deployed ML prediction models using FastAPI and Flask.",
+                        "Optimized inference pipelines to reduce latency.",
+                        "Implemented CI/CD workflows for model versioning."
+                    ]
+                },
+                {
+                    role: "Machine Learning Intern",
+                    company: "IT-Solera",
+                    period: "Jun 2024 - Sep 2024",
+                    points: ["Trained deep learning models for NLP and Computer Vision using TensorFlow/PyTorch."]
+                }
+            ],
+            flagship: [
+                {
+                    id: 1,
+                    title: "CasePolaris RAG System",
+                    subtitle: "Legal AI Assistant",
+                    desc: "An advanced legal research platform for Canadian court cases. Implements <strong>Hybrid Search</strong> (Dense + Sparse) and <strong>Local Reranking</strong> to optimize context retrieval.",
+                    tech: ["Django DRF", "LangChain", "Pinecone", "FlashRank", "Stripe"],
+                    visual: "Architecture Flow: User -> Query Synthesis -> Dense/Sparse -> FlashRank"
+                },
+                {
+                    id: 2,
+                    title: "StoneCloud ERP",
+                    subtitle: "Manufacturing ERP",
+                    desc: "A complex ERP enforcing <strong>True Accounting Principles</strong>. Uses SQL Stored Procedures to handle 'Inverse Accounting Logic' (Sales = Customer Expense).",
+                    tech: ["MySQL Procedures", "Complex SQL", "Django", "Ledger Logic"],
+                    visual: "Logic Engine: Triggers -> Journals -> Inventory Updates"
+                },
+                {
+                    id: 3,
+                    title: "ForceV Solar Dashboard",
+                    subtitle: "Big Data Analytics",
+                    desc: "Real-time solar monitoring processing millions of rows. Aggregation logic moved to DB layer via Stored Procedures for sub-second dashboard loading.",
+                    tech: ["Time Series", "MySQL Opt.", "FastAPI", "Data Viz"],
+                    visual: "Data Flow: Raw Intervals -> SQL Aggregation -> JSON API"
+                }
+            ],
+            mlLab: [
+                {
+                    icon: "fas fa-image",
+                    title: "CLIP Retrieval Explorer",
+                    desc: "Analysis-first image retrieval on Flickr30k. Implements text-to-image search using <strong>OpenAI CLIP ViT-B/32</strong> and FAISS. Features Recall@k metrics and UMAP clustering for failure analysis.",
+                    tech: ["PyTorch", "HuggingFace", "FAISS", "CLIP", "UMAP"]
+                },
+                {
+                    icon: "fas fa-chart-line",
+                    title: "NeuraCap Data Pipeline",
+                    desc: "High-throughput financial extraction. Concurrent execution, token-bucket rate limiting, and automated 8K filing vectorization.",
+                    tech: ["Concurrent.futures", "OpenSearch", "Python"]
+                },
+                {
+                    icon: "fas fa-funnel-dollar",
+                    title: "Marketing Attribution",
+                    desc: "Data Science pipeline utilizing <strong>Media Mix Modeling</strong>. Attributes downloads to channels (TikTok, YouTube) using Time-Decay features and RidgeCV.",
+                    tech: ["Scikit-Learn", "RidgeCV", "Pandas"]
+                },
+                {
+                    icon: "fas fa-shield-alt",
+                    title: "Fraud Detection",
+                    desc: "Ensemble models (XGBoost) on imbalanced financial datasets. Utilized <strong>SMOTE</strong> for oversampling.",
+                    tech: ["XGBoost", "SMOTE", "Imblearn"]
+                }
+            ]
+        };
+
+        // --- 2. RENDER FUNCTIONS ---
+
+        function renderExperience() {
+            const container = document.getElementById('experience-container');
+            container.innerHTML = data.experience.map((job, index) => `
+                <div class="ml-8 relative animate-fade-up" style="animation-delay: ${index * 100}ms">
+                    <div class="absolute -left-[41px] top-1 w-5 h-5 rounded-full ${index === 0 ? 'bg-accent' : 'bg-slate-600'} border-4 border-dark"></div>
+                    <div class="bg-card p-6 rounded-lg border border-slate-700 hover:border-accent/50 transition-colors relative group">
+                        <button class="delete-btn absolute top-4 right-4 text-red-500 hover:text-red-400" onclick="deleteItem('experience', ${index})"><i class="fas fa-trash"></i></button>
+                        <header class="flex flex-col md:flex-row justify-between mb-2">
+                            <h3 class="text-xl font-bold text-white">${job.role}</h3>
+                            <span class="text-accent font-mono text-sm">${job.company} | ${job.period}</span>
+                        </header>
+                        <ul class="list-disc list-outside ml-4 space-y-2 text-slate-400">
+                            ${job.points.map(p => `<li>${p}</li>`).join('')}
+                        </ul>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderFlagship() {
+            const container = document.getElementById('flagship-container');
+            container.innerHTML = data.flagship.map((proj, index) => `
+                <article class="grid md:grid-cols-12 gap-8 mb-24 items-center animate-fade-up group relative">
+                    <button class="delete-btn absolute top-0 right-0 z-20 text-red-500 bg-dark p-2 rounded" onclick="deleteItem('flagship', ${index})"><i class="fas fa-trash"></i></button>
+                    
+                    <div class="md:col-span-7 z-10 md:pr-8 ${index % 2 !== 0 ? 'md:order-2 md:pl-8 md:pr-0 md:text-right' : ''}">
+                        <p class="text-accent font-mono text-sm mb-2">${proj.subtitle}</p>
+                        <h3 class="text-2xl font-bold text-white mb-4">${proj.title}</h3>
+                        <div class="bg-card p-6 rounded text-slate-400 text-sm shadow-xl border border-slate-700 mb-6">
+                            <p>${proj.desc}</p>
+                        </div>
+                        <div class="flex flex-wrap gap-3 mb-6 ${index % 2 !== 0 ? 'md:justify-end' : ''}">
+                            ${proj.tech.map(t => `<span class="tech-badge">${t}</span>`).join('')}
+                        </div>
+                    </div>
+                    
+                    <div class="md:col-span-5 relative h-full min-h-[250px] bg-slate-800 rounded border border-slate-700 p-4 flex flex-col justify-center items-center ${index % 2 !== 0 ? 'md:order-1' : ''}">
+                        <div class="text-xs font-mono text-slate-500 text-center mb-2">System Visual</div>
+                        <div class="text-xs text-accent text-center px-4 py-2 border border-accent/30 rounded bg-accent/5">
+                            ${proj.visual}
+                        </div>
+                    </div>
+                </article>
+            `).join('');
+        }
+
+        function renderMLLab() {
+            const container = document.getElementById('ml-lab-container');
+            container.innerHTML = data.mlLab.map((item, index) => `
+                <div class="bg-card p-6 rounded border border-slate-700 hover:-translate-y-2 transition-transform duration-300 group relative">
+                    <button class="delete-btn absolute top-4 right-4 text-red-500 hover:text-red-400" onclick="deleteItem('mlLab', ${index})"><i class="fas fa-trash"></i></button>
+                    <div class="flex justify-between items-center mb-4">
+                        <i class="${item.icon} text-accent text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-accent transition-colors">${item.title}</h3>
+                    <p class="text-slate-400 text-sm mb-4">${item.desc}</p>
+                    <div class="flex flex-wrap gap-2 text-xs font-mono text-slate-500">
+                        ${item.tech.map(t => `<span>${t}</span>`).join(' • ')}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // --- 3. ADMIN LOGIC ---
+
+        function toggleAdmin() {
+            const pass = prompt("Enter Admin Password:");
+            if (pass === "admin") {
+                document.body.classList.toggle('admin-active');
+                document.getElementById('admin-indicator').classList.toggle('hidden');
+                alert("Admin Mode: ON. You can now Add/Delete projects.");
+            } else {
+                alert("Access Denied");
+            }
+        }
+
+        function openModal(category) {
+            document.getElementById('admin-modal').classList.remove('hidden');
+            document.getElementById('admin-modal').classList.add('flex');
+            document.getElementById('p-category').value = category;
+        }
+
+        function closeModal() {
+            document.getElementById('admin-modal').classList.add('hidden');
+            document.getElementById('admin-modal').classList.remove('flex');
+        }
+
+        function deleteItem(category, index) {
+            if (confirm("Are you sure?")) {
+                if (category === 'experience') data.experience.splice(index, 1);
+                if (category === 'flagship') data.flagship.splice(index, 1);
+                if (category === 'mlLab') data.mlLab.splice(index, 1);
+                rerender();
+            }
+        }
+
+        document.getElementById('add-project-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const category = document.getElementById('p-category').value;
+            const title = document.getElementById('p-title').value;
+            const desc = document.getElementById('p-desc').value;
+            const tech = document.getElementById('p-tech').value.split(',').map(t => t.trim());
+
+            if (category === 'ML Lab') {
+                data.mlLab.unshift({
+                    icon: "fas fa-flask",
+                    title: title,
+                    desc: desc,
+                    tech: tech
+                });
+            } else if (category === 'Flagship') {
+                data.flagship.unshift({
+                    id: Date.now(),
+                    title: title,
+                    subtitle: "New Project",
+                    desc: desc,
+                    tech: tech,
+                    visual: "Visual Placeholder"
+                });
+            } else if (category === 'Experience') {
+                data.experience.unshift({
+                    role: title,
+                    company: desc, // using desc field for company for simplicity
+                    period: "Recent",
+                    points: tech // using tech field for points
+                });
+            }
+
+            closeModal();
+            document.getElementById('add-project-form').reset();
+            rerender();
+        });
+
+        function rerender() {
+            renderExperience();
+            renderFlagship();
+            renderMLLab();
+        }
+
+        function toggleMobileMenu() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        }
+
+        // --- 4. INIT ---
+        rerender();
+
+        // Navbar Hide on Scroll
+        let lastScroll = 0;
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            const navbar = document.getElementById('navbar');
+            if (currentScroll > lastScroll && currentScroll > 100) {
+                navbar.style.transform = 'translateY(-100%)';
+            } else {
+                navbar.style.transform = 'translateY(0)';
+            }
+            lastScroll = currentScroll;
+        });
+
+    </script>
+</body>
+
+</html>
